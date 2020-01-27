@@ -1,0 +1,37 @@
+{
+    "compilerOptions": {
+        "sourceMap": true,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "target": "es2019",
+        "lib": [
+            "es2019",
+            "esnext"
+        ],
+        "types": [
+            "node",
+            "jest"
+        ],
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "paths": {
+            "@Handlers/*": [ "handlers/*" ],
+            "@Loggly/*": [ "loggly/*" ]
+        },
+        "baseUrl": "src",
+        "outDir": "dist",
+        "plugins": [
+            { "transform": "typescript-transform-paths" }
+        ]
+    },
+    "include": [
+        "./src/**/*.ts"
+    ],
+    "exclude": [
+        "node_modules",
+        ".serverless",
+        ".vscode",
+        "dist",
+        "yarn.lock"
+    ]
+}

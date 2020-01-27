@@ -1,0 +1,61 @@
+service:
+  name: cloudwatch-loggly-lambda-integration
+
+provider:
+  name: aws
+  stage: ${opt:stage, 'local'}
+  region: ${opt:region, 'eu-west-1'}
+  runtime: nodejs12.x
+  apiGateway:
+    minimumCompressionSize: 1024 # Enable gzip compression for responses > 1 K
+  logs:
+    restApi:
+      accessLogging: true
+      level: INFO
+    frameworkLambda: true
+
+custom:
+  browserify:
+    fullPaths: true
+    exclude:
+      - aws-sdk
+  logForwarding:
+    destinationARN: ${cf:cloudwatch-loggly-lambda-integration-dev.SendToLogglyArn}
+    stages:
+      - dev
+    filterPattern: '?ERROR ?WARN ?INFO'
+    normalizedFilterID: true # whether to use normalized function name as filter ID
+  #  roleArn: '[ARN of the IAM role that grants Cloudwatch Logs permissions]'
+  #  createLambdaPermission: true # whether to create the AWS::Lambda::Permission for the destinationARN (when policy size limits are a concern)
+
+functions:
+  testLog:
+    handler: dist/handlers/testLog.lambda
+    browserify:
+      entries:
+        - dist/handlers/testLog.js
+    events:
+      - http:
+          method: post
+          path: test
+  sendToLoggly:
+    handler: dist/handlers/sendToLoggly.lambda
+    browserify:
+      entries:
+        - dist/handlers/sendToLoggly.js
+    logForwarding:
+      enabled: false
+
+resources:
+  Outputs:
+    SendToLogglyArn:
+      Value:
+        'Fn::GetAtt': [ SendToLogglyLambdaFunction, Arn ]
+
+plugins:
+  - serverless-log-forwarding
+  - serverless-dotenv-plugin
+  - serverless-plugin-browserifier
+
+package:
+  individually: true

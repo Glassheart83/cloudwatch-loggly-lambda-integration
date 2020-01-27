@@ -1,0 +1,41 @@
+{
+    "name": "cloudwatch-loggly-lambda-integration",
+    "version": "1.0.0",
+    "description": "Integration project to serve Loggly with CloudWatch logs through lambda",
+    "engines": {
+        "node": "12"
+    },
+    "scripts": {
+        "clean": "shx rm -rf ./dist",
+        "lint": "eslint --fix 'src/**/*.ts'",
+        "compile": "ttsc",
+        "build": "yarn clean && yarn lint && yarn compile",
+        "start": "yarn build && node --inspect $(which serverless) offline start --printOutput --stage",
+        "test": "jest -c jest.config.js"
+    },
+    "dependencies": {
+        "aws-sdk": "^2.596.0"
+    },
+    "devDependencies": {
+        "@types/aws-lambda": "^8.10.39",
+        "@types/jest": "^24.0.25",
+        "@types/node": "12.12.18",
+        "@typescript-eslint/eslint-plugin": "^2.14.0",
+        "@typescript-eslint/parser": "^2.14.0",
+        "browserify": "^16.5.0",
+        "eslint": "^6.8.0",
+        "jest": "^24.9.0",
+        "serverless": "^1.60.4",
+        "serverless-dotenv-plugin": "^2.1.1",
+        "serverless-log-forwarding": "^1.4.0",
+        "serverless-plugin-browserifier": "^2.1.0",
+        "shx": "^0.3.2",
+        "ts-jest": "^24.2.0",
+        "ts-node": "^8.5.4",
+        "ttypescript": "^1.5.8",
+        "typescript": "^3.7.4",
+        "typescript-transform-paths": "^1.1.14"
+    },
+    "author": "Samuele Farfarini",
+    "license": "MIT"
+}

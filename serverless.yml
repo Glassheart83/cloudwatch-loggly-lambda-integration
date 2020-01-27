@@ -6,13 +6,9 @@ provider:
   stage: ${opt:stage, 'local'}
   region: ${opt:region, 'eu-west-1'}
   runtime: nodejs12.x
-  apiGateway:
-    minimumCompressionSize: 1024 # Enable gzip compression for responses > 1 K
-  logs:
-    restApi:
-      accessLogging: true
-      level: INFO
-    frameworkLambda: true
+  memorySize: 256
+  timeout: 10
+  versionFunctions: false
 
 custom:
   browserify:

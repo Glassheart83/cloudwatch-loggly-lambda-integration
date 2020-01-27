@@ -27,7 +27,6 @@
         "jest": "^24.9.0",
         "serverless": "^1.60.4",
         "serverless-dotenv-plugin": "^2.1.1",
-        "serverless-log-forwarding": "^1.4.0",
         "serverless-plugin-browserifier": "^2.1.0",
         "shx": "^0.3.2",
         "ts-jest": "^24.2.0",

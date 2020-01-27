@@ -14,15 +14,8 @@
         ],
         "module": "commonjs",
         "moduleResolution": "node",
-        "paths": {
-            "@Handlers/*": [ "handlers/*" ],
-            "@Loggly/*": [ "loggly/*" ]
-        },
         "baseUrl": "src",
-        "outDir": "dist",
-        "plugins": [
-            { "transform": "typescript-transform-paths" }
-        ]
+        "outDir": "dist"
     },
     "include": [
         "./src/**/*.ts"

@@ -1,4 +1,4 @@
-import { LogglyMessage, CloudWatchMessage, LogglyEvent } from '@Loggly/types';
+import { LogglyMessage, CloudWatchMessage, LogglyEvent } from './types';
 import { CloudWatchLogsDecodedData, CloudWatchLogsLogEvent } from 'aws-lambda';
 
 const extractTagList = (s: string): string[] => {

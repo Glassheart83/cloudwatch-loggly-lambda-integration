@@ -1,7 +1,7 @@
 import { Context, CloudWatchLogsEvent, CloudWatchLogsDecodedData } from 'aws-lambda';
 import { gunzip } from 'zlib';
 import { request, IncomingMessage } from 'http';
-import { buildMessage } from '@Loggly/buildMessage';
+import { buildMessage } from '../loggly/buildMessage';
 
 export const lambda = (event: CloudWatchLogsEvent, context: Context) => {
 

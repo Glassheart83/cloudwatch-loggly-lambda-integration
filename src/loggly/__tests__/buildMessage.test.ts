@@ -1,4 +1,4 @@
-import { buildMessage } from './buildMessage';
+import { buildMessage } from '../buildMessage';
 import { CloudWatchLogsDecodedData } from 'aws-lambda';
 
 describe('BuildLogglyMessage should parse CloudWatch data and output a message to be sent to Loggly', () => {
